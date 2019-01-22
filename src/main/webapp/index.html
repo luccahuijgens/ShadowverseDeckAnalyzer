@@ -76,6 +76,10 @@
     <input id="optionNecromancy" name=options value="Necromancy" type="checkbox"/>
     <label for="optionNecromancy">Necromancy</label>
   </div>
+    <div class="inputGroup">
+    <input id="optionSpellboost" name=options value="Spellboost" type="checkbox"/>
+    <label for="optionSpellboost">Spellboost</label>
+  </div>
             <div class="inputGroup">
     <input id="optionBounce" name=options value="Bounce" type="checkbox"/>
     <label for="optionBounce">Bounce</label>
@@ -215,6 +219,14 @@ function submitForm(){
      });
      window.location="/restservices/deck/getanalysis?deckcode="+$('#deckcode').val()+"&queries="+favorite.join(",")
 }
+$(document).ready(function() {
+	  $(window).keydown(function(event){
+	    if(event.keyCode == 13) {
+	      event.preventDefault();
+	      return false;
+	    }
+	  });
+	});
 </script>
 
 </html>

@@ -243,6 +243,9 @@ public class CardRestService {
 		if (s.contains("Subtraction")) {
 			categorymap.put("Countdown Subtraction",service.getSubtractionCardsFromDeck(deck));
 		}
+		if (s.contains("Spellboost")) {
+			categorymap.put("Spellboost",service.getSpellboostCardsFromDeck(deck));
+		}
 		if (s.contains("Summoner")) {
 			categorymap.put("Summoning",service.getSummonerCardsFromDeck(deck));
 		}
