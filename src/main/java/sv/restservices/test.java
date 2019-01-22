@@ -8,9 +8,14 @@ import java.io.Reader;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 
 import sv.domain.Card;
 import sv.persistence.CardService;
@@ -19,7 +24,7 @@ import sv.persistence.CardServiceProvider;
 public class test {
 	public static void main(String[] args) {
 		CardService service=CardServiceProvider.getCardService();
-		String code="c6ad";
+		String code="d8ro";
 		JSONObject data=readJsonFromUrl("https://shadowverse-portal.com/api/v1/deck/import?format=json&deck_code="+code).getJSONObject("data");
 		String deckhash=data.getString("hash");
 		
@@ -31,9 +36,9 @@ public class test {
 	        JSONObject obj = cards.getJSONObject(i);
 	        deck.add(service.getCardByID(obj.getInt("card_id")));
 		}
-		for (Card c:service.getBoardBuildingCardsFromDeck(deck)) {
-			System.out.println(c.getCard_name());
-		}
+		 for (Entry<Card, Integer> entry  : service.getBoardBuildingCardsFromDeck(deck).entrySet()) {
+			 System.out.println(entry.getKey().getCard_name()+" x"+entry.getValue());
+		 }
 	}
 	private static JSONObject readJsonFromUrl(String url) {
 		try {

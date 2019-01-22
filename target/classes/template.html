@@ -1,10 +1,232 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
-"http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>$title</title>
-</head>
-<body>$body
+<title>Shadowverse Deck Analyzer</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="/css/analysis.css">
+<link rel="stylesheet" href="/css/$deckclass.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+<link rel="stylesheet" href="/css/chartist.css">
+<script src="/js/chartist.js"></script>
+<script src="/js/chartist-plugin-axistitle.js"></script>
+
+<div id=pagecontainer class=w3-container style=z-index:2;width:100%;padding:16px;position:relative;>
+<div id=contentcontainer class="w3-container w3-card w3-center" style="padding:0 !important;margin:auto;width:900px;">
+<img src="https://shadowverse-portal.com/image/$deck_hash?lang=en">
+ 
+ <!-- Graphs-->
+ <div id="graphscontainer" class="w3-container graphscontainer">
+ <div class="svheadertext" id=graphHeader><h5>Analysis</h5><hr>
+ </div>
+ <div id=graphgrid style=width:100%;height:416px;>
+ <div id=deckcurve style=width:50%;float:left;>
+ <h6><b>Deck Curve</b></h6>
+<div class="ct-chart ct-golden-section" id="chart1"></div><br>
+ </div>
+  <div id=playability style=width:50%;Float:left;>
+ <h6><b>Playable Cards per Turn</b></h6>
+<div class="ct-chart ct-golden-section" id="chart2"></div><br>
+</div>
+</div>
+<div id=graphgrid style=width:100%;>
+<div id=cardtypes style=width:33%;float:left;>
+<h6><b>Card Types</b></h6>
+<div class="ct-chart ct-golden-section" id="chart3"></div>
+</div>
+<div id=cardclasses style=width:33%;float:left;>
+<h6><b>Own Craft/Neutral Distribution</b></h6>
+<div class="ct-chart ct-golden-section" id="chart4"></div>
+</div>
+<div id=cardcats style=width:33%;float:left;>
+<h6><b>Card Purpose</b></h6>
+<div class="ct-chart ct-golden-section" id="chart5"></div>
+</div>
+</div>
+ </div>
+ 
+  <div id="graphscontainerheader" class="w3-container graphscontainerheader">
+ <h2 style=margin-bottom:1px;>Cards per Category</h2><hr style=width:100%;>
+ </div>
+
+$cardcategories
+</div>
+</div>
+
+</div>
+<div id="bg" style=z-index:1;>
+  <img src="https://images6.alphacoders.com/916/916657.jpg" alt="">
+</div>
+<script>
+var deckcurvedata = {
+		  labels: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10+'],
+		  series: [
+		    $cardcosts,
+		    ]
+};
+var options = {
+seriesBarDistance: 15,
+axisY: {
+    type: Chartist.FixedScaleAxis,
+    ticks: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11,12,13,14,15],
+    low: 0,
+},
+chartPadding: {
+    top: 14,
+    right: 0,
+    bottom: 30,
+    left: 0
+  },
+    plugins: [
+        Chartist.plugins.ctAxisTitle({
+          axisX: {
+            axisTitle: 'PP Cost ->',
+            axisClass: 'ct-axis-title',
+            offset: {
+              x: 0,
+              y: 50
+            },
+            textAnchor: 'middle',
+            flipTitle: true
+          },
+          axisY: {
+            axisTitle: '<- Amount of Cards',
+            axisClass: 'ct-axis-title',
+            offset: {
+              x: 0,
+              y: 0
+            },
+            textAnchor: 'middle',
+            flipTitle: false
+          }
+        })
+      ]
+}
+var chart1=new Chartist.Bar('#chart1', deckcurvedata, options);
+</script>
+<script>
+new Chartist.Line('#chart2', {
+	  labels: ['T1','T2','T3','T4','T5','T6','T7','T8','T9','T10+'],
+	  series: [
+	    $cardcostline
+	  ]
+	}, {
+	  low: 0,
+	  showArea: true,
+	  seriesBarDistance: 40,
+	  axisY: {
+		    type: Chartist.FixedScaleAxis,
+		    ticks: [0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40],
+		    low: 0
+		},
+		chartPadding: {
+		    top: 14,
+		    right: 0,
+		    bottom: 30,
+		    left: 0
+		  },
+		    plugins: [
+		        Chartist.plugins.ctAxisTitle({
+		          axisX: {
+		            axisTitle: 'Turn number ->',
+		            axisClass: 'ct-axis-title',
+		            offset: {
+		              x: 0,
+		              y: 50
+		            },
+		            textAnchor: 'middle',
+		            flipTitle: true
+		          },
+		          axisY: {
+		            axisTitle: 'Amount of Cards from deck',
+		            axisClass: 'ct-axis-title',
+		            offset: {
+		              x: 0,
+		              y: 0
+		            },
+		            textAnchor: 'middle',
+		            flipTitle: false
+		          }
+		        })
+		      ]
+	});
+</script>
+<script>
+var cardtypes = ['Followers','Spells','Amulets'];
+
+var cardtypesdata = {
+  series: $cardtypes
+};
+
+var sum = function(a, b) { return a + b };
+
+new Chartist.Pie('#chart3', cardtypesdata, {
+  labelInterpolationFnc: function(value, idx) {
+    var percentage = Math.round(value / cardtypesdata.series.reduce(sum) * 1000) / 10+ '%';
+    return percentage + ' ' + cardtypes[idx] ;
+  }
+});
+</script>
+<script>
+var cardclasses = ['Own Craft','Neutral'];
+
+var cardclassesdata = {
+  series: $cardclasses
+};
+
+new Chartist.Pie('#chart4', cardclassesdata, {
+  labelInterpolationFnc: function(value, idx) {
+    var percentage = Math.round(value / cardclassesdata.series.reduce(sum) * 1000) / 10 + '%';
+    return percentage + ' ' + cardclasses[idx] ;
+  }
+});
+</script>
+<script>
+var cardcategorydata = {
+		  labels: ['Board Building', 'Removal', 'Resources'],
+		  series: [
+		    $cardcategory,
+		    ]
+};
+var options = {
+seriesBarDistance: 40,
+axisY: {
+    type: Chartist.FixedScaleAxis,
+    ticks: [0, 4, 8, 12, 16, 20, 24, 28, 32, 36,40],
+    low: 0
+},
+chartPadding: {
+  top: 14,
+  right: 0,
+  bottom: 30,
+  left: 0
+},
+  plugins: [
+      Chartist.plugins.ctAxisTitle({
+        axisX: {
+          axisTitle: 'Card Purpose ->',
+          axisClass: 'ct-axis-title',
+          offset: {
+            x: 0,
+            y: 50
+          },
+          textAnchor: 'middle',
+          flipTitle: true
+        },
+        axisY: {
+          axisTitle: '<- Amount of Cards',
+          axisClass: 'ct-axis-title',
+          offset: {
+            x: 0,
+            y: 0
+          },
+          textAnchor: 'middle',
+          flipTitle: false
+        }
+      })
+    ]
+}
+var chart1=new Chartist.Bar('#chart5', cardcategorydata, options);
+</script>
 </body>
 </html>

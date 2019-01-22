@@ -1,0 +1,89 @@
+#chart1{
+
+  width:365px !important;
+  height:350px !important;
+}
+
+#chart1 .ct-bar{
+  stroke-width: 25px;
+  stroke:red;
+}
+#chart1 span{
+  font-weight:700;
+}
+#chart1 .ct-axis-title{
+  font-weight:500;
+  font-size:0.95rem;
+}
+#chart2{
+
+  width:365px !important;
+  height:350px !important;
+}
+#chart2 .ct-series-a .ct-area{
+fill:red;
+}
+#chart2 .ct-series-a .ct-point{
+stroke:red;
+}
+#chart2 .ct-series-a .ct-line{
+stroke:red;
+}
+#chart2 span{
+  font-weight:700;
+}
+#chart2 .ct-axis-title{
+  font-weight:500;
+  font-size:0.95rem;
+}
+#chart3{
+
+  width:250px !important;
+  height:250px !important;
+}
+#chart3 .ct-label{
+	font-weight:700;
+	fill:black;
+}
+#chart3 .ct-series-a .ct-slice-pie{
+fill:red !important;
+}
+#chart3 .ct-series-b .ct-slice-pie{
+fill:crimson !important;
+}
+#chart3 .ct-series-c .ct-slice-pie{
+fill:firebrick !important;
+}
+#chart4{
+
+  width:250px !important;
+  height:250px !important;
+}
+#chart4 .ct-label{
+	font-weight:700;
+	fill:black;
+}
+#chart4 .ct-series-a .ct-slice-pie{
+fill:red !important;
+}
+#chart4 .ct-series-b .ct-slice-pie{
+fill:lightgrey !important;
+}
+
+#chart5{
+
+  width:250px !important;
+  height:250px !important;
+}
+
+#chart5 .ct-bar{
+  stroke-width: 25px;
+  stroke:red;
+}
+#chart5 span{
+  font-weight:700;
+}
+#chart5 .ct-axis-title{
+  font-weight:500;
+  font-size:0.95rem;
+}
