@@ -14,6 +14,7 @@ import sv.domain.Card;
 
 public class MechanicDAO extends BaseDAO {
 	private String removalExceptions = "110521020";
+	private String aoeRemovalExceptions = "110641010";
 	private String healExceptions = "108732010";
 
 	public MechanicDAO() {
@@ -316,7 +317,7 @@ public class MechanicDAO extends BaseDAO {
 		for (Card c : deck) {
 			try (Connection conn = getConnection()) {
 				PreparedStatement stmt = conn.prepareStatement(
-						"select* from cards where card_id=? AND ((skill_disc ilike '%destroy%' OR skill_disc ilike '%Destroy%') OR (skill_disc ilike '%Banish%' OR skill_disc ilike '%Banish%') OR skill_disc ilike '%damage to%') and skill_disc not ilike '%no enemy followers in play%' and (skill_disc ilike '%all enemies%' OR skill_disc ilike '%all followers%' OR skill_disc ilike '%all enemy followers%' OR (skill_disc ilike '%time%' AND skill_disc ilike '%enemy follower%'))");
+						"select* from cards where card_id=? AND card_id not in ("+aoeRemovalExceptions+") AND ((skill_disc ilike '%destroy%' OR skill_disc ilike '%Destroy%') OR (skill_disc ilike '%Banish%' OR skill_disc ilike '%Banish%') OR skill_disc ilike '%damage to%') and skill_disc not ilike '%no enemy followers in play%' and (skill_disc ilike '%all enemies%' OR skill_disc ilike '%all followers%' OR skill_disc ilike '%all enemy followers%' OR (skill_disc ilike '%time%' AND skill_disc ilike '%enemy follower%'))");
 				stmt.setInt(1, c.getCard_id());
 				ResultSet results = stmt.executeQuery();
 				boolean isAdded = false;
@@ -338,7 +339,7 @@ public class MechanicDAO extends BaseDAO {
 					List<String> items = Arrays.asList(c.getTokens().split("\\s*,\\s*"));
 					for (String s : items) {
 						stmt = conn.prepareStatement(
-								"select* from cards where card_id=? AND ((skill_disc ilike '%destroy%' OR skill_disc ilike '%Destroy%') OR (skill_disc ilike '%Banish%' OR skill_disc ilike '%Banish%') OR skill_disc ilike '%damage to%') and skill_disc not ilike '%no enemy followers in play%' and (skill_disc ilike '%all enemies%' OR skill_disc ilike '%all followers%' OR skill_disc ilike '%all enemy followers%' OR (skill_disc ilike '%time%' AND skill_disc ilike '%enemy follower%'))");
+								"select* from cards where card_id=? AND card_id not in ("+aoeRemovalExceptions+") AND ((skill_disc ilike '%destroy%' OR skill_disc ilike '%Destroy%') OR (skill_disc ilike '%Banish%' OR skill_disc ilike '%Banish%') OR skill_disc ilike '%damage to%') and skill_disc not ilike '%no enemy followers in play%' and (skill_disc ilike '%all enemies%' OR skill_disc ilike '%all followers%' OR skill_disc ilike '%all enemy followers%' OR (skill_disc ilike '%time%' AND skill_disc ilike '%enemy follower%'))");
 						stmt.setInt(1, Integer.parseInt(s));
 						ResultSet tokenresults = stmt.executeQuery();
 						if (tokenresults.next() && hasApplicableTokens == false) {
