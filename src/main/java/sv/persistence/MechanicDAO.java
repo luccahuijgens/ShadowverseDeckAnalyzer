@@ -24,7 +24,7 @@ public class MechanicDAO extends BaseDAO {
 		for (Card c : deck) {
 			try (Connection conn = getConnection()) {
 				PreparedStatement stmt = conn.prepareStatement(
-						"select* from cards where card_id=? AND (skill_disc ilike '%banish an allied%') or (skill_disc ilike '%damage to an allied%') or (skill_disc ilike '%destroy an allied%') OR (skill_disc ilike '%damage to a follower%') or ((skill_disc ilike '%damage to a follower%') AND (skill_disc ilike '%to that follower%'))");
+						"select* from cards where card_id=? AND ((skill_disc ilike '%banish an allied%') or (skill_disc ilike '%damage to an allied%') or (skill_disc ilike '%destroy an allied%') OR (skill_disc ilike '%damage to a follower%') or ((skill_disc ilike '%damage to a follower%') AND (skill_disc ilike '%to that follower%')))");
 				stmt.setInt(1, c.getCard_id());
 				ResultSet results = stmt.executeQuery();
 				boolean isAdded = false;
@@ -46,7 +46,7 @@ public class MechanicDAO extends BaseDAO {
 					List<String> items = Arrays.asList(c.getTokens().split("\\s*,\\s*"));
 					for (String s : items) {
 						stmt = conn.prepareStatement(
-								"select* from cards where card_id=? AND (skill_disc ilike '%banish an allied%') or (skill_disc ilike '%damage to an allied%') or (skill_disc ilike '%destroy an allied%') OR (skill_disc ilike '%damage to a follower%') or ((skill_disc ilike '%damage to a follower%') AND (skill_disc ilike '%to that follower%'))");
+								"select* from cards where card_id=? AND ((skill_disc ilike '%banish an allied%') or (skill_disc ilike '%damage to an allied%') or (skill_disc ilike '%destroy an allied%') OR (skill_disc ilike '%damage to a follower%') or ((skill_disc ilike '%damage to a follower%') AND (skill_disc ilike '%to that follower%')))");
 						stmt.setInt(1, Integer.parseInt(s));
 						ResultSet tokenresults = stmt.executeQuery();
 						if (tokenresults.next() && hasApplicableTokens == false) {
@@ -563,7 +563,7 @@ public class MechanicDAO extends BaseDAO {
 		for (Card c : deck) {
 			try (Connection conn = getConnection()) {
 				PreparedStatement stmt = conn.prepareStatement(
-						"select* from cards where card_id=? AND (((evo_skill_disc ilike '%Storm%') OR (evo_skill_disc ilike '%damage to all enemies%' OR evo_skill_disc ilike '% damage to an enemy.%' or evo_skill_disc ilike '%damage to the enemy leader%')) OR ((skill_disc ilike '%Storm%') OR (skill_disc ilike '%damage to all enemies%' OR skill_disc ilike '% damage to an enemy.%' or skill_disc ilike '%damage to the enemy leader%')))");
+						"select* from cards where card_id=? AND ((evo_skill_disc ilike '%damage to all enemies%' OR evo_skill_disc ilike '% damage to an enemy.%' or evo_skill_disc ilike '%damage to the enemy leader%') OR (skill_disc ilike '%damage to all enemies%' OR skill_disc ilike '% damage to an enemy.%' or skill_disc ilike '%damage to the enemy leader%'))");
 				stmt.setInt(1, c.getCard_id());
 				ResultSet results = stmt.executeQuery();
 				boolean isAdded = false;

@@ -181,7 +181,7 @@ public class CardRestService {
 			categorymap.put("Burn",service.getBurnCardsFromDeck(deck));
 		}
 		if (s.contains("Commander")) {
-			categorymap.put("Commanders",service.getBurnCardsFromDeck(deck));
+			categorymap.put("Commanders",service.getCommanderCardsFromDeck(deck));
 		}
 		if (s.contains("Countdown")) {
 			categorymap.put("Countdown Amulets",service.getCountdownCardsFromDeck(deck));
