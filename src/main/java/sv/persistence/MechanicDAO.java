@@ -144,7 +144,7 @@ public class MechanicDAO extends BaseDAO {
 		for (Card c : deck) {
 			try (Connection conn = getConnection()) {
 				PreparedStatement stmt = conn.prepareStatement(
-						"select* from cards where card_id=? AND clan=7 AND (skill_disc ilike '%Countdown%' and skill_disc ilike '%Subtract%' and (skill_disc ilike '%allied amulet%' or skill_disc ilike '%that%')) or (evo_skill_disc ilike '%Countdown%' and evo_skill_disc ilike '%Subtract%' and (evo_skill_disc ilike '%allied amulet%' or evo_skill_disc ilike '%that%'))");
+						"select* from cards where card_id=? AND clan=7 AND ((skill_disc ilike '%Countdown%' and skill_disc ilike '%Subtract%' and (skill_disc ilike '%allied amulet%' or skill_disc ilike '%that%')) or (evo_skill_disc ilike '%Countdown%' and evo_skill_disc ilike '%Subtract%' and (evo_skill_disc ilike '%allied amulet%' or evo_skill_disc ilike '%that%')))");
 				stmt.setInt(1, c.getCard_id());
 				ResultSet results = stmt.executeQuery();
 				boolean isAdded = false;
@@ -166,7 +166,7 @@ public class MechanicDAO extends BaseDAO {
 					List<String> items = Arrays.asList(c.getTokens().split("\\s*,\\s*"));
 					for (String s : items) {
 						stmt = conn.prepareStatement(
-								"select* from cards where card_id=? AND clan=7 AND (skill_disc ilike '%Countdown%' and skill_disc ilike '%Subtract%' and (skill_disc ilike '%allied amulet%' or skill_disc ilike '%that%')) or (evo_skill_disc ilike '%Countdown%' and evo_skill_disc ilike '%Subtract%' and (evo_skill_disc ilike '%allied amulet%' or evo_skill_disc ilike '%that%'))");
+								"select* from cards where card_id=? AND clan=7 AND ((skill_disc ilike '%Countdown%' and skill_disc ilike '%Subtract%' and (skill_disc ilike '%allied amulet%' or skill_disc ilike '%that%')) or (evo_skill_disc ilike '%Countdown%' and evo_skill_disc ilike '%Subtract%' and (evo_skill_disc ilike '%allied amulet%' or evo_skill_disc ilike '%that%')))");
 						stmt.setInt(1, Integer.parseInt(s));
 						ResultSet tokenresults = stmt.executeQuery();
 						if (tokenresults.next() && hasApplicableTokens == false) {
