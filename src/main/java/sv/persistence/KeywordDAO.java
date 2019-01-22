@@ -49,7 +49,7 @@ public class KeywordDAO extends BaseDAO {
 		for (Card c : deck) {
 			try (Connection conn = getConnection()) {
 				PreparedStatement stmt = conn.prepareStatement(
-						"select* from cards where card_id=? AND ((skill_disc like '%Burial Rite: %' or skill_disc like '%Burial Rite -%') or (evo_skill_disc like '%Burial Rite: %' or evo_skill_disc like '%Burial Rite -%'))");
+						"select* from cards where card_id=? AND ((skill_disc ilike '%Burial Rite: %' or skill_disc ilike '%Burial Rite -%') or (evo_skill_disc ilike '%Burial Rite: %' or evo_skill_disc ilike '%Burial Rite -%'))");
 				stmt.setInt(1, c.getCard_id());
 				ResultSet results = stmt.executeQuery();
 				boolean isAdded = false;
@@ -71,7 +71,7 @@ public class KeywordDAO extends BaseDAO {
 					List<String> items = Arrays.asList(c.getTokens().split("\\s*,\\s*"));
 					for (String s : items) {
 						stmt = conn.prepareStatement(
-								"select* from cards where card_id=? AND ((skill_disc like '%Burial Rite: %' or skill_disc like '%Burial Rite -%') or (evo_skill_disc like '%Burial Rite: %' or evo_skill_disc like '%Burial Rite -%'))");
+								"select* from cards where card_id=? AND ((skill_disc ilike '%Burial Rite: %' or skill_disc ilike '%Burial Rite -%') or (evo_skill_disc ilike '%Burial Rite: %' or evo_skill_disc ilike '%Burial Rite -%'))");
 						stmt.setInt(1, Integer.parseInt(s));
 						ResultSet tokenresults = stmt.executeQuery();
 						if (tokenresults.next() && hasApplicableTokens == false) {
@@ -159,7 +159,7 @@ public class KeywordDAO extends BaseDAO {
 		for (Card c : deck) {
 			try (Connection conn = getConnection()) {
 				PreparedStatement stmt = conn
-						.prepareStatement("select* from cards where card_id=? AND evo_skill_disc like '%Evolve:%'");
+						.prepareStatement("select* from cards where card_id=? AND evo_skill_disc ilike '%Evolve:%'");
 				stmt.setInt(1, c.getCard_id());
 				ResultSet results = stmt.executeQuery();
 				boolean isAdded = false;
@@ -181,7 +181,7 @@ public class KeywordDAO extends BaseDAO {
 					List<String> items = Arrays.asList(c.getTokens().split("\\s*,\\s*"));
 					for (String s : items) {
 						stmt = conn.prepareStatement(
-								"select* from cards where card_id=? AND evo_skill_disc like '%Evolve:%'");
+								"select* from cards where card_id=? AND evo_skill_disc ilike '%Evolve:%'");
 						stmt.setInt(1, Integer.parseInt(s));
 						ResultSet tokenresults = stmt.executeQuery();
 						if (tokenresults.next() && hasApplicableTokens == false) {
@@ -217,7 +217,7 @@ public class KeywordDAO extends BaseDAO {
 		for (Card c : deck) {
 			try (Connection conn = getConnection()) {
 				PreparedStatement stmt = conn.prepareStatement(
-						"select* from cards where card_id=? AND (skill_disc like '%Ambush. <br>%' or skill_disc='Ambush.' or skill_disc like '%Ambush.<br>%' or skill_disc like '%<br>Ambush%' or (skill_disc like '%gain%' and skill_disc like '%ambush%')))");
+						"select* from cards where card_id=? AND (skill_disc ilike '%Ambush. <br>%' or skill_disc='Ambush.' or skill_disc ilike '%Ambush.<br>%' or skill_disc ilike '%<br>Ambush%' or (skill_disc ilike '%gain%' and skill_disc ilike '%ambush%'))");
 				stmt.setInt(1, c.getCard_id());
 				ResultSet results = stmt.executeQuery();
 				boolean isAdded = false;
@@ -239,7 +239,7 @@ public class KeywordDAO extends BaseDAO {
 					List<String> items = Arrays.asList(c.getTokens().split("\\s*,\\s*"));
 					for (String s : items) {
 						stmt = conn.prepareStatement(
-								"select* from cards where card_id=? AND (skill_disc like '%Ambush. <br>%' or skill_disc='Ambush.' or skill_disc like '%Ambush.<br>%' or skill_disc like '%<br>Ambush%' or (skill_disc like '%gain%' and skill_disc like '%ambush%')))");
+								"select* from cards where card_id=? AND (skill_disc ilike '%Ambush. <br>%' or skill_disc='Ambush.' or skill_disc ilike '%Ambush.<br>%' or skill_disc ilike '%<br>Ambush%' or (skill_disc ilike '%gain%' and skill_disc ilike '%ambush%'))");
 						stmt.setInt(1, Integer.parseInt(s));
 						ResultSet tokenresults = stmt.executeQuery();
 						if (tokenresults.next() && hasApplicableTokens == false) {
@@ -273,7 +273,7 @@ public class KeywordDAO extends BaseDAO {
 		for (Card c : deck) {
 			try (Connection conn = getConnection()) {
 				PreparedStatement stmt = conn.prepareStatement(
-						"select* from cards where card_id=? AND ((skill_disc like '%Ward. <br>%' or skill_disc like '%Gain Ward%' or skill_disc like '%Gains Ward%' or (skill_disc like '%Gain%' and (skill_disc like '%and Ward%' or skill_disc like '%or Ward%' or skill_disc like '%, Ward%')) or (skill_disc like '%Summon%' and skill_disc like '%Ward%' and skill_disc like '%Give%')or skill_disc like '%Ward.<br>%' or skill_disc like '%<br>Ward%' or skill_disc='Ward.') or  (evo_skill_disc like '%Ward. <br>%' or evo_skill_disc like '%Gain Ward%' or evo_skill_disc like '%Gains Ward%' or (evo_skill_disc like '%Gain%' and (evo_skill_disc like '%and Ward%' or evo_skill_disc like '%or Ward%' or evo_skill_disc like '%, Ward%')) or (evo_skill_disc like '%Summon%' and evo_skill_disc like '%Ward%' and evo_skill_disc like '%Give%')or evo_skill_disc like '%Ward.<br>%' or evo_skill_disc like '%<br>Ward%' or evo_skill_disc='Ward.'))");
+						"select* from cards where card_id=? AND ((skill_disc ilike '%Ward. <br>%' or skill_disc ilike '%Gain Ward%' or skill_disc ilike '%Gains Ward%' or (skill_disc ilike '%Gain%' and (skill_disc ilike '%and Ward%' or skill_disc ilike '%or Ward%' or skill_disc ilike '%, Ward%')) or (skill_disc ilike '%Summon%' and skill_disc ilike '%Ward%' and skill_disc ilike '%Give%')or skill_disc ilike '%Ward.<br>%' or skill_disc ilike '%<br>Ward%' or skill_disc='Ward.') or  (evo_skill_disc ilike '%Ward. <br>%' or evo_skill_disc ilike '%Gain Ward%' or evo_skill_disc ilike '%Gains Ward%' or (evo_skill_disc ilike '%Gain%' and (evo_skill_disc ilike '%and Ward%' or evo_skill_disc ilike '%or Ward%' or evo_skill_disc ilike '%, Ward%')) or (evo_skill_disc ilike '%Summon%' and evo_skill_disc ilike '%Ward%' and evo_skill_disc ilike '%Give%')or evo_skill_disc ilike '%Ward.<br>%' or evo_skill_disc ilike '%<br>Ward%' or evo_skill_disc='Ward.'))");
 				stmt.setInt(1, c.getCard_id());
 				ResultSet results = stmt.executeQuery();
 				boolean isAdded = false;
@@ -295,7 +295,7 @@ public class KeywordDAO extends BaseDAO {
 					List<String> items = Arrays.asList(c.getTokens().split("\\s*,\\s*"));
 					for (String s : items) {
 						stmt = conn.prepareStatement(
-								"select* from cards where card_id=? AND ((skill_disc like '%Ward. <br>%' or skill_disc like '%Gain Ward%' or skill_disc like '%Gains Ward%' or (skill_disc like '%Gain%' and (skill_disc like '%and Ward%' or skill_disc like '%or Ward%' or skill_disc like '%, Ward%')) or (skill_disc like '%Summon%' and skill_disc like '%Ward%' and skill_disc like '%Give%')or skill_disc like '%Ward.<br>%' or skill_disc like '%<br>Ward%' or skill_disc='Ward.') or  (evo_skill_disc like '%Ward. <br>%' or evo_skill_disc like '%Gain Ward%' or evo_skill_disc like '%Gains Ward%' or (evo_skill_disc like '%Gain%' and (evo_skill_disc like '%and Ward%' or evo_skill_disc like '%or Ward%' or evo_skill_disc like '%, Ward%')) or (evo_skill_disc like '%Summon%' and evo_skill_disc like '%Ward%' and evo_skill_disc like '%Give%')or evo_skill_disc like '%Ward.<br>%' or evo_skill_disc like '%<br>Ward%' or evo_skill_disc='Ward.'))");
+								"select* from cards where card_id=? AND ((skill_disc ilike '%Ward. <br>%' or skill_disc ilike '%Gain Ward%' or skill_disc ilike '%Gains Ward%' or (skill_disc ilike '%Gain%' and (skill_disc ilike '%and Ward%' or skill_disc ilike '%or Ward%' or skill_disc ilike '%, Ward%')) or (skill_disc ilike '%Summon%' and skill_disc ilike '%Ward%' and skill_disc ilike '%Give%')or skill_disc ilike '%Ward.<br>%' or skill_disc ilike '%<br>Ward%' or skill_disc='Ward.') or  (evo_skill_disc ilike '%Ward. <br>%' or evo_skill_disc ilike '%Gain Ward%' or evo_skill_disc ilike '%Gains Ward%' or (evo_skill_disc ilike '%Gain%' and (evo_skill_disc ilike '%and Ward%' or evo_skill_disc ilike '%or Ward%' or evo_skill_disc ilike '%, Ward%')) or (evo_skill_disc ilike '%Summon%' and evo_skill_disc ilike '%Ward%' and evo_skill_disc ilike '%Give%')or evo_skill_disc ilike '%Ward.<br>%' or evo_skill_disc ilike '%<br>Ward%' or evo_skill_disc='Ward.'))");
 						stmt.setInt(1, Integer.parseInt(s));
 						ResultSet tokenresults = stmt.executeQuery();
 						if (tokenresults.next() && hasApplicableTokens == false) {
@@ -329,7 +329,7 @@ public class KeywordDAO extends BaseDAO {
 		for (Card c : deck) {
 			try (Connection conn = getConnection()) {
 				PreparedStatement stmt = conn.prepareStatement(
-						"select* from cards where card_id=? AND skill_disc like '%Last Words:%' or evo_skill_disc like '%Last Words:%'");
+						"select* from cards where card_id=? AND skill_disc ilike '%Last Words:%' or evo_skill_disc ilike '%Last Words:%'");
 				stmt.setInt(1, c.getCard_id());
 				ResultSet results = stmt.executeQuery();
 				boolean isAdded = false;
@@ -351,7 +351,7 @@ public class KeywordDAO extends BaseDAO {
 					List<String> items = Arrays.asList(c.getTokens().split("\\s*,\\s*"));
 					for (String s : items) {
 						stmt = conn.prepareStatement(
-								"select* from cards where card_id=? AND skill_disc like '%Last Words:%' or evo_skill_disc like '%Last Words:%'");
+								"select* from cards where card_id=? AND skill_disc ilike '%Last Words:%' or evo_skill_disc ilike '%Last Words:%'");
 						stmt.setInt(1, Integer.parseInt(s));
 						ResultSet tokenresults = stmt.executeQuery();
 						if (tokenresults.next() && hasApplicableTokens == false) {
@@ -385,7 +385,7 @@ public class KeywordDAO extends BaseDAO {
 		for (Card c : deck) {
 			try (Connection conn = getConnection()) {
 				PreparedStatement stmt = conn
-						.prepareStatement("select* from cards where card_id=? AND skill_disc like '%Fanfare:%'");
+						.prepareStatement("select* from cards where card_id=? AND skill_disc ilike '%Fanfare:%'");
 				stmt.setInt(1, c.getCard_id());
 				ResultSet results = stmt.executeQuery();
 				boolean isAdded = false;
@@ -407,7 +407,7 @@ public class KeywordDAO extends BaseDAO {
 					List<String> items = Arrays.asList(c.getTokens().split("\\s*,\\s*"));
 					for (String s : items) {
 						stmt = conn.prepareStatement(
-								"select* from cards where card_id=? AND skill_disc like '%Fanfare:%'");
+								"select* from cards where card_id=? AND skill_disc ilike '%Fanfare:%'");
 						stmt.setInt(1, Integer.parseInt(s));
 						ResultSet tokenresults = stmt.executeQuery();
 						if (tokenresults.next() && hasApplicableTokens == false) {
@@ -441,7 +441,7 @@ public class KeywordDAO extends BaseDAO {
 		for (Card c : deck) {
 			try (Connection conn = getConnection()) {
 				PreparedStatement stmt = conn
-						.prepareStatement("select* from cards where card_id=? AND skill_disc like '%Enhance (%'");
+						.prepareStatement("select* from cards where card_id=? AND skill_disc ilike '%Enhance (%'");
 				stmt.setInt(1, c.getCard_id());
 				ResultSet results = stmt.executeQuery();
 				boolean isAdded = false;
@@ -463,7 +463,7 @@ public class KeywordDAO extends BaseDAO {
 					List<String> items = Arrays.asList(c.getTokens().split("\\s*,\\s*"));
 					for (String s : items) {
 						stmt = conn.prepareStatement(
-								"select* from cards where card_id=? AND skill_disc like '%Enhance (%'");
+								"select* from cards where card_id=? AND skill_disc ilike '%Enhance (%'");
 						stmt.setInt(1, Integer.parseInt(s));
 						ResultSet tokenresults = stmt.executeQuery();
 						if (tokenresults.next() && hasApplicableTokens == false) {
@@ -497,7 +497,7 @@ public class KeywordDAO extends BaseDAO {
 		for (Card c : deck) {
 			try (Connection conn = getConnection()) {
 				PreparedStatement stmt = conn
-						.prepareStatement("select* from cards where card_id=? AND skill_disc like '%Accelerate (%'");
+						.prepareStatement("select* from cards where card_id=? AND skill_disc ilike '%Accelerate (%'");
 				stmt.setInt(1, c.getCard_id());
 				ResultSet results = stmt.executeQuery();
 				boolean isAdded = false;
@@ -519,7 +519,7 @@ public class KeywordDAO extends BaseDAO {
 					List<String> items = Arrays.asList(c.getTokens().split("\\s*,\\s*"));
 					for (String s : items) {
 						stmt = conn.prepareStatement(
-								"select* from cards where card_id=? AND skill_disc like '%Accelerate (%'");
+								"select* from cards where card_id=? AND skill_disc ilike '%Accelerate (%'");
 						stmt.setInt(1, Integer.parseInt(s));
 						ResultSet tokenresults = stmt.executeQuery();
 						if (tokenresults.next() && hasApplicableTokens == false) {
@@ -553,7 +553,7 @@ public class KeywordDAO extends BaseDAO {
 		for (Card c : deck) {
 			try (Connection conn = getConnection()) {
 				PreparedStatement stmt = conn.prepareStatement(
-						"select* from cards where card_id=? AND (skill_disc like '%gain Rush%' or skill_disc like '%or Rush%' or skill_disc like '%, Rush,%' or skill_disc like '%and Rush.%' or skill_disc like '%Rush.<br>%' or skill_disc like '%Rush. <br>%' or skill_disc='Rush.' or (skill_disc like '%give%' and skill_disc like '%Rush%' and (skill_disc like '%all allied%' or skill_disc like '%other%')) or (skill_disc like '%give%' and skill_disc like '%Rush%' and skill_disc like '%it%')) or (evo_skill_disc like '%gain Rush%' or evo_skill_disc like '%or Rush%' or evo_skill_disc like '%, Rush,%' or evo_skill_disc like '%and Rush.%' or evo_skill_disc like '%Rush.<br>%' or evo_skill_disc like '%Rush. <br>%' or evo_skill_disc='Rush.' or (evo_skill_disc like '%give%' and evo_skill_disc like '%Rush%' and (evo_skill_disc like '%all allied%' or evo_skill_disc like '%other%')) or (evo_skill_disc like '%give%' and evo_skill_disc like '%Rush%' and evo_skill_disc like '%it%'))");
+						"select* from cards where card_id=? AND (skill_disc ilike '%gain Rush%' or skill_disc ilike '%or Rush%' or skill_disc ilike '%, Rush,%' or skill_disc ilike '%and Rush.%' or skill_disc ilike '%Rush.<br>%' or skill_disc ilike '%Rush. <br>%' or skill_disc='Rush.' or (skill_disc ilike '%give%' and skill_disc ilike '%Rush%' and (skill_disc ilike '%all allied%' or skill_disc ilike '%other%')) or (skill_disc ilike '%give%' and skill_disc ilike '%Rush%' and skill_disc ilike '%it%')) or (evo_skill_disc ilike '%gain Rush%' or evo_skill_disc ilike '%or Rush%' or evo_skill_disc ilike '%, Rush,%' or evo_skill_disc ilike '%and Rush.%' or evo_skill_disc ilike '%Rush.<br>%' or evo_skill_disc ilike '%Rush. <br>%' or evo_skill_disc='Rush.' or (evo_skill_disc ilike '%give%' and evo_skill_disc ilike '%Rush%' and (evo_skill_disc ilike '%all allied%' or evo_skill_disc ilike '%other%')) or (evo_skill_disc ilike '%give%' and evo_skill_disc ilike '%Rush%' and evo_skill_disc ilike '%it%'))");
 				stmt.setInt(1, c.getCard_id());
 				ResultSet results = stmt.executeQuery();
 				boolean isAdded = false;
@@ -575,7 +575,7 @@ public class KeywordDAO extends BaseDAO {
 					List<String> items = Arrays.asList(c.getTokens().split("\\s*,\\s*"));
 					for (String s : items) {
 						stmt = conn.prepareStatement(
-								"select* from cards where card_id=? AND (skill_disc like '%gain Rush%' or skill_disc like '%or Rush%' or skill_disc like '%, Rush,%' or skill_disc like '%and Rush.%' or skill_disc like '%Rush.<br>%' or skill_disc like '%Rush. <br>%' or skill_disc='Rush.' or (skill_disc like '%give%' and skill_disc like '%Rush%' and (skill_disc like '%all allied%' or skill_disc like '%other%')) or (skill_disc like '%give%' and skill_disc like '%Rush%' and skill_disc like '%it%')) or (evo_skill_disc like '%gain Rush%' or evo_skill_disc like '%or Rush%' or evo_skill_disc like '%, Rush,%' or evo_skill_disc like '%and Rush.%' or evo_skill_disc like '%Rush.<br>%' or evo_skill_disc like '%Rush. <br>%' or evo_skill_disc='Rush.' or (evo_skill_disc like '%give%' and evo_skill_disc like '%Rush%' and (evo_skill_disc like '%all allied%' or evo_skill_disc like '%other%')) or (evo_skill_disc like '%give%' and evo_skill_disc like '%Rush%' and evo_skill_disc like '%it%'))");
+								"select* from cards where card_id=? AND (skill_disc ilike '%gain Rush%' or skill_disc ilike '%or Rush%' or skill_disc ilike '%, Rush,%' or skill_disc ilike '%and Rush.%' or skill_disc ilike '%Rush.<br>%' or skill_disc ilike '%Rush. <br>%' or skill_disc='Rush.' or (skill_disc ilike '%give%' and skill_disc ilike '%Rush%' and (skill_disc ilike '%all allied%' or skill_disc ilike '%other%')) or (skill_disc ilike '%give%' and skill_disc ilike '%Rush%' and skill_disc ilike '%it%')) or (evo_skill_disc ilike '%gain Rush%' or evo_skill_disc ilike '%or Rush%' or evo_skill_disc ilike '%, Rush,%' or evo_skill_disc ilike '%and Rush.%' or evo_skill_disc ilike '%Rush.<br>%' or evo_skill_disc ilike '%Rush. <br>%' or evo_skill_disc='Rush.' or (evo_skill_disc ilike '%give%' and evo_skill_disc ilike '%Rush%' and (evo_skill_disc ilike '%all allied%' or evo_skill_disc ilike '%other%')) or (evo_skill_disc ilike '%give%' and evo_skill_disc ilike '%Rush%' and evo_skill_disc ilike '%it%'))");
 						stmt.setInt(1, Integer.parseInt(s));
 						ResultSet tokenresults = stmt.executeQuery();
 						if (tokenresults.next() && hasApplicableTokens == false) {
@@ -609,7 +609,7 @@ public class KeywordDAO extends BaseDAO {
 		for (Card c : deck) {
 			try (Connection conn = getConnection()) {
 				PreparedStatement stmt = conn.prepareStatement(
-						"select* from cards where card_id=? AND  where (skill_disc like '%gain Storm%' or skill_disc='Storm.' or skill_disc like '%Storm. <br>%' or skill_disc like '%Storm.<br>%' or (skill_disc like '%gain%' and skill_disc like '%Storm%')) or (evo_skill_disc like '%gain Storm%' or evo_skill_disc='Storm.' or evo_skill_disc like '%Storm. <br>%' or evo_skill_disc like '%Storm.<br>%' or (evo_skill_disc like '%gain%' and evo_skill_disc like '%Storm%'))");
+						"select* from cards where card_id=? AND (skill_disc ilike '%gain Storm%' or skill_disc='Storm.' or skill_disc ilike '%Storm. <br>%' or skill_disc ilike '%Storm.<br>%' or (skill_disc ilike '%gain%' and skill_disc ilike '%Storm%')) or (evo_skill_disc ilike '%gain Storm%' or evo_skill_disc='Storm.' or evo_skill_disc ilike '%Storm. <br>%' or evo_skill_disc ilike '%Storm.<br>%' or (evo_skill_disc ilike '%gain%' and evo_skill_disc ilike '%Storm%'))");
 				stmt.setInt(1, c.getCard_id());
 				ResultSet results = stmt.executeQuery();
 				boolean isAdded = false;
@@ -631,7 +631,7 @@ public class KeywordDAO extends BaseDAO {
 					List<String> items = Arrays.asList(c.getTokens().split("\\s*,\\s*"));
 					for (String s : items) {
 						stmt = conn.prepareStatement(
-								"select* from cards where card_id=? AND select* from cards where (skill_disc like '%gain Rush%' or skill_disc like '%or Rush%' or skill_disc like '%, Rush,%' or skill_disc like '%and Rush.%' or skill_disc like '%Rush.<br>%' or skill_disc like '%Rush. <br>%' or skill_disc='Rush.' or (skill_disc like '%give%' and skill_disc like '%Rush%' and (skill_disc like '%all allied%' or skill_disc like '%other%')) or (skill_disc like '%give%' and skill_disc like '%Rush%' and skill_disc like '%it%')) or (evo_skill_disc like '%gain Rush%' or evo_skill_disc like '%or Rush%' or evo_skill_disc like '%, Rush,%' or evo_skill_disc like '%and Rush.%' or evo_skill_disc like '%Rush.<br>%' or evo_skill_disc like '%Rush. <br>%' or evo_skill_disc='Rush.' or (evo_skill_disc like '%give%' and evo_skill_disc like '%Rush%' and (evo_skill_disc like '%all allied%' or evo_skill_disc like '%other%')) or (evo_skill_disc like '%give%' and evo_skill_disc like '%Rush%' and evo_skill_disc like '%it%'))");
+						"select* from cards where card_id=? AND (skill_disc ilike '%gain Storm%' or skill_disc='Storm.' or skill_disc ilike '%Storm. <br>%' or skill_disc ilike '%Storm.<br>%' or (skill_disc ilike '%gain%' and skill_disc ilike '%Storm%')) or (evo_skill_disc ilike '%gain Storm%' or evo_skill_disc='Storm.' or evo_skill_disc ilike '%Storm. <br>%' or evo_skill_disc ilike '%Storm.<br>%' or (evo_skill_disc ilike '%gain%' and evo_skill_disc ilike '%Storm%'))");
 						stmt.setInt(1, Integer.parseInt(s));
 						ResultSet tokenresults = stmt.executeQuery();
 						if (tokenresults.next() && hasApplicableTokens == false) {
@@ -690,7 +690,7 @@ public class KeywordDAO extends BaseDAO {
 		for (Card c : deck) {
 			try (Connection conn = getConnection()) {
 				PreparedStatement stmt = conn
-						.prepareStatement("select* from cards where card_id=? AND (skill_disc like '%Invocation:%')");
+						.prepareStatement("select* from cards where card_id=? AND (skill_disc ilike '%Invocation:%')");
 				stmt.setInt(1, c.getCard_id());
 				ResultSet results = stmt.executeQuery();
 				boolean isAdded = false;
@@ -712,7 +712,7 @@ public class KeywordDAO extends BaseDAO {
 					List<String> items = Arrays.asList(c.getTokens().split("\\s*,\\s*"));
 					for (String s : items) {
 						stmt = conn.prepareStatement(
-								"select* from cards where card_id=? AND (skill_disc like '%Invocation:%')");
+								"select* from cards where card_id=? AND (skill_disc ilike '%Invocation:%')");
 						stmt.setInt(1, Integer.parseInt(s));
 						ResultSet tokenresults = stmt.executeQuery();
 						if (tokenresults.next() && hasApplicableTokens == false) {
@@ -755,7 +755,7 @@ public class KeywordDAO extends BaseDAO {
 		for (Card c : deck) {
 			try (Connection conn = getConnection()) {
 				PreparedStatement stmt = conn.prepareStatement(
-						"select* from cards where card_id=? AND (skill_disc like '%Necromancy (%' or evo_skill_disc like '%Necromancy (%')");
+						"select* from cards where card_id=? AND (skill_disc ilike '%Necromancy (%' or evo_skill_disc ilike '%Necromancy (%')");
 				stmt.setInt(1, c.getCard_id());
 				ResultSet results = stmt.executeQuery();
 				boolean isAdded = false;
@@ -777,7 +777,7 @@ public class KeywordDAO extends BaseDAO {
 					List<String> items = Arrays.asList(c.getTokens().split("\\s*,\\s*"));
 					for (String s : items) {
 						stmt = conn.prepareStatement(
-								"select* from cards where card_id=? AND (skill_disc like '%Necromancy (%' or evo_skill_disc like '%Necromancy (%')");
+								"select* from cards where card_id=? AND (skill_disc ilike '%Necromancy (%' or evo_skill_disc ilike '%Necromancy (%')");
 						stmt.setInt(1, Integer.parseInt(s));
 						ResultSet tokenresults = stmt.executeQuery();
 						if (tokenresults.next() && hasApplicableTokens == false) {
@@ -813,7 +813,7 @@ public class KeywordDAO extends BaseDAO {
 		for (Card c : deck) {
 			try (Connection conn = getConnection()) {
 				PreparedStatement stmt = conn.prepareStatement(
-						"select* from cards where card_id=? AND (skill_disc like '%Reanimate (%' or evo_skill_disc like '%Reanimate (%' )");
+						"select* from cards where card_id=? AND (skill_disc ilike '%Reanimate (%' or evo_skill_disc ilike '%Reanimate (%' )");
 				stmt.setInt(1, c.getCard_id());
 				ResultSet results = stmt.executeQuery();
 				boolean isAdded = false;
@@ -835,7 +835,7 @@ public class KeywordDAO extends BaseDAO {
 					List<String> items = Arrays.asList(c.getTokens().split("\\s*,\\s*"));
 					for (String s : items) {
 						stmt = conn.prepareStatement(
-								"select* from cards where card_id=? AND (skill_disc like '%Reanimate (%' or evo_skill_disc like '%Reanimate (%' )");
+								"select* from cards where card_id=? AND (skill_disc ilike '%Reanimate (%' or evo_skill_disc ilike '%Reanimate (%' )");
 						stmt.setInt(1, Integer.parseInt(s));
 						ResultSet tokenresults = stmt.executeQuery();
 						if (tokenresults.next() && hasApplicableTokens == false) {
@@ -869,7 +869,7 @@ public class KeywordDAO extends BaseDAO {
 		for (Card c : deck) {
 			try (Connection conn = getConnection()) {
 				PreparedStatement stmt = conn.prepareStatement(
-						"select* from cards where card_id=? AND (skill_disc like '%this card has been spellboosted%' or evo_skill_disc like '%this card has been spellboosted%' or skill_disc like '%spellboost:%' or evo_skill_disc like '%spellboost:%')");
+						"select* from cards where card_id=? AND (skill_disc ilike '%this card has been spellboosted%' or evo_skill_disc ilike '%this card has been spellboosted%' or skill_disc ilike '%spellboost:%' or evo_skill_disc ilike '%spellboost:%')");
 				stmt.setInt(1, c.getCard_id());
 				ResultSet results = stmt.executeQuery();
 				boolean isAdded = false;
@@ -891,7 +891,7 @@ public class KeywordDAO extends BaseDAO {
 					List<String> items = Arrays.asList(c.getTokens().split("\\s*,\\s*"));
 					for (String s : items) {
 						stmt = conn.prepareStatement(
-								"select* from cards where card_id=? AND (skill_disc like '%this card has been spellboosted%' or evo_skill_disc like '%this card has been spellboosted%' or skill_disc like '%spellboost:%' or evo_skill_disc like '%spellboost:%')");
+								"select* from cards where card_id=? AND (skill_disc ilike '%this card has been spellboosted%' or evo_skill_disc ilike '%this card has been spellboosted%' or skill_disc ilike '%spellboost:%' or evo_skill_disc ilike '%spellboost:%')");
 						stmt.setInt(1, Integer.parseInt(s));
 						ResultSet tokenresults = stmt.executeQuery();
 						if (tokenresults.next() && hasApplicableTokens == false) {
