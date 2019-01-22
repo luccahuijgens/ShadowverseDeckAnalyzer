@@ -1151,7 +1151,7 @@ public class MechanicDAO extends BaseDAO {
 					List<String> items = Arrays.asList(c.getTokens().split("\\s*,\\s*"));
 					for (String s : items) {
 						stmt = conn.prepareStatement(
-								"select* from cards where card_id=? AND (skill_disc ilike '%can''t take more than%' or evo_skill_disc ilike '%can''t take more than%')");
+								"select* from cards where card_id=? AND (skill_disc ilike '%can''t be attacked%' or evo_skill_disc ilike '%can''t be attacked%')");
 						stmt.setInt(1, Integer.parseInt(s));
 						ResultSet tokenresults = stmt.executeQuery();
 						if (tokenresults.next() && hasApplicableTokens == false) {
