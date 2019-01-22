@@ -678,7 +678,7 @@ public class MechanicDAO extends BaseDAO {
 		for (Card c : deck) {
 			try (Connection conn = getConnection()) {
 				PreparedStatement stmt = conn.prepareStatement(
-						"select* from cards where card_id=? AND (skill_disc ilike '% be destroyed by spells and effects%' or evo_skill_disc ilike '% be destroyed by spells and effects%')");
+						"select* from cards where card_id=? AND (skill_disc ilike '%Can''t be destroyed by spells and effects%' or evo_skill_disc ilike '%Can''t be destroyed by spells and effects%')");
 				stmt.setInt(1, c.getCard_id());
 				ResultSet results = stmt.executeQuery();
 				boolean isAdded = false;
@@ -700,7 +700,7 @@ public class MechanicDAO extends BaseDAO {
 					List<String> items = Arrays.asList(c.getTokens().split("\\s*,\\s*"));
 					for (String s : items) {
 						stmt = conn.prepareStatement(
-								"select* from cards where card_id=? AND (skill_disc ilike '% be destroyed by spells and effects%' or evo_skill_disc ilike '% be destroyed by spells and effects%')");
+								"select* from cards where card_id=? AND (skill_disc ilike '%Can''t be destroyed by spells and effects%' or evo_skill_disc ilike '%Can''t be destroyed by spells and effects%')");
 						stmt.setInt(1, Integer.parseInt(s));
 						ResultSet tokenresults = stmt.executeQuery();
 						if (tokenresults.next() && hasApplicableTokens == false) {
@@ -1151,7 +1151,7 @@ public class MechanicDAO extends BaseDAO {
 					List<String> items = Arrays.asList(c.getTokens().split("\\s*,\\s*"));
 					for (String s : items) {
 						stmt = conn.prepareStatement(
-								"select* from cards where card_id=? AND (skill_disc ilike '%can''t be attacked%' or evo_skill_disc ilike '%can''t be attacked%')");
+								"select* from cards where card_id=? AND (skill_disc ilike '%can''t take more than%' or evo_skill_disc ilike '%can''t take more than%')");
 						stmt.setInt(1, Integer.parseInt(s));
 						ResultSet tokenresults = stmt.executeQuery();
 						if (tokenresults.next() && hasApplicableTokens == false) {
@@ -1185,7 +1185,7 @@ public class MechanicDAO extends BaseDAO {
 		for (Card c : deck) {
 			try (Connection conn = getConnection()) {
 				PreparedStatement stmt = conn.prepareStatement(
-						"select* from cards where card_id=? AND (skill_disc ilike '%can''t take more than%' or evo_skill_disc ilike '%can''t take more than%')");
+						"select* from cards where card_id=? AND (skill_disc ilike '%can''t be attacked%' or evo_skill_disc ilike '%can''t be attacked%')");
 				stmt.setInt(1, c.getCard_id());
 				ResultSet results = stmt.executeQuery();
 				boolean isAdded = false;
@@ -1207,7 +1207,7 @@ public class MechanicDAO extends BaseDAO {
 					List<String> items = Arrays.asList(c.getTokens().split("\\s*,\\s*"));
 					for (String s : items) {
 						stmt = conn.prepareStatement(
-								"select* from cards where card_id=? AND (skill_disc ilike '%can''t take more than%' or evo_skill_disc ilike '%can''t take more than%')");
+								"select* from cards where card_id=? AND (skill_disc ilike '%can''t be attacked%' or evo_skill_disc ilike '%can''t be attacked%')");
 						stmt.setInt(1, Integer.parseInt(s));
 						ResultSet tokenresults = stmt.executeQuery();
 						if (tokenresults.next() && hasApplicableTokens == false) {
