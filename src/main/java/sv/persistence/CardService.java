@@ -225,4 +225,8 @@ public class CardService {
 	public Map<Card, Integer> getSpellboostCardsFromDeck(ArrayList<Card> deck) {
 		return keywordDAO.getSpellboostCardsFromDeck(deck);
 	}
+	
+	public Map<Card, Integer> getRampCardsFromDeck(ArrayList<Card> deck) {
+		return mechanicDAO.getRampCardsFromDeck(deck);
+	}
 }

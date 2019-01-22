@@ -231,6 +231,9 @@ public class CardRestService {
 		if (s.contains("Permanent")) {
 			categorymap.put("Permanent Effects",service.getPermanentCardsFromDeck(deck));
 		}
+		if (s.contains("Ramp")) {
+			categorymap.put("Ramp",service.getRampCardsFromDeck(deck));
+		}
 		if (s.contains("Reanimate")) {
 			categorymap.put("Reanimate",service.getReanimateCardsFromDeck(deck));
 		}
