@@ -143,7 +143,7 @@ public class CardRestService {
 		htmlString = htmlString.replace("$cardcosts", "["+zerocost+", "+onecost+", "+twocost+", "+threecost+", "+fourcost+", "+fivecost+", "+sixcost+", "+sevencost+", "+eightcost+", "+ninecost+","+tencost+"]");
 		htmlString = htmlString.replace("$cardcostline", "["+(zerocost+onecost)+", "+(twocost+zerocost+onecost)+", "+(threecost+twocost+zerocost+onecost)+", "+(fourcost+threecost+twocost+zerocost+onecost)+", "+(fivecost+fourcost+threecost+twocost+zerocost+onecost)+", "+(sixcost+fivecost+fourcost+threecost+twocost+zerocost+onecost)+", "+(sevencost+sixcost+fivecost+fourcost+threecost+twocost+zerocost+onecost)+", "+(eightcost+sevencost+sixcost+fivecost+fourcost+threecost+twocost+zerocost+onecost)+", "+(ninecost+eightcost+sevencost+sixcost+fivecost+fourcost+threecost+twocost+zerocost+onecost)+","+(tencost+ninecost+eightcost+sevencost+sixcost+fivecost+fourcost+threecost+twocost+zerocost+onecost)+"]");
 		htmlString = htmlString.replace("$cardtypes", "["+followerCount+", "+spellCount+", "+amuletCount+"]");
-		htmlString = htmlString.replace("$cardclasses", "["+(40-neutralCount)+", "+neutralCount+"]");
+		htmlString = htmlString.replace("$cardclasses", "["+(deck.size()-neutralCount)+", "+neutralCount+"]");
 		htmlString = htmlString.replace("$cardcategories", generateCardCategoryDivs(categorymap));
 		return htmlString;
 		}catch(Exception e) {
@@ -180,14 +180,26 @@ public class CardRestService {
 		if (s.contains("Burn")) {
 			categorymap.put("Burn",service.getBurnCardsFromDeck(deck));
 		}
+		if (s.contains("Untargetable")) {
+			categorymap.put("Can't be targeted by Spells & Effects",service.getUntargetableCardsFromDeck(deck));
+		}
+		if (s.contains("Unattackable")) {
+			categorymap.put("Can't be attacked",service.getUnattackableCardsFromDeck(deck));
+		}
+		if (s.contains("CardDraw")) {
+			categorymap.put("Card Draw",service.getDrawCardsFromDeck(deck));
+		}
 		if (s.contains("Commander")) {
 			categorymap.put("Commanders",service.getCommanderCardsFromDeck(deck));
 		}
 		if (s.contains("Countdown")) {
 			categorymap.put("Countdown Amulets",service.getCountdownCardsFromDeck(deck));
 		}
-		if (s.contains("CardDraw")) {
-			categorymap.put("Card Draw",service.getDrawCardsFromDeck(deck));
+		if (s.contains("Subtraction")) {
+			categorymap.put("Countdown Subtraction",service.getSubtractionCardsFromDeck(deck));
+		}
+		if (s.contains("DamageLimiter")) {
+			categorymap.put("Damage Limiters",service.getDamageLimiterCardsFromDeck(deck));
 		}
 		if (s.contains("EarthSigil")) {
 			categorymap.put("Earth Sigils", service.getEarthSigilCardsFromDeck(deck));
@@ -203,9 +215,6 @@ public class CardRestService {
 		}
 		if (s.contains("FriendlyFire")) {
 			categorymap.put("Friendly Fire",service.getFriendlyFireCardsFromDeck(deck));
-		}
-		if (s.contains("Generation")) {
-			categorymap.put("Resource Generation",service.getGenerationCardsFromDeck(deck));
 		}
 		if (s.contains("Heal")) {
 			categorymap.put("Healing",service.getHealCardsFromDeck(deck));
@@ -237,17 +246,23 @@ public class CardRestService {
 		if (s.contains("Reanimate")) {
 			categorymap.put("Reanimate",service.getReanimateCardsFromDeck(deck));
 		}
+		if (s.contains("Generation")) {
+			categorymap.put("Resource Generation",service.getGenerationCardsFromDeck(deck));
+		}
 		if (s.contains("Rush")) {
 			categorymap.put("Rush",service.getRushCardsFromDeck(deck));
 		}
-		if (s.contains("Storm")) {
-			categorymap.put("Storm",service.getStormCardsFromDeck(deck));
+		if (s.contains("Undamagable")) {
+			categorymap.put("Spell & Effect damage resistance",service.getUndamagableCardsFromDeck(deck));
 		}
-		if (s.contains("Subtraction")) {
-			categorymap.put("Countdown Subtraction",service.getSubtractionCardsFromDeck(deck));
+		if (s.contains("Undestroyable")) {
+			categorymap.put("Spell & Effect destruction resistance",service.getUndestoryableCardsFromDeck(deck));
 		}
 		if (s.contains("Spellboost")) {
 			categorymap.put("Spellboost",service.getSpellboostCardsFromDeck(deck));
+		}
+		if (s.contains("Storm")) {
+			categorymap.put("Storm",service.getStormCardsFromDeck(deck));
 		}
 		if (s.contains("Summoner")) {
 			categorymap.put("Summoning",service.getSummonerCardsFromDeck(deck));
@@ -257,21 +272,6 @@ public class CardRestService {
 		}
 		if (s.contains("Ward")) {
 			categorymap.put("Ward",service.getWardCardsFromDeck(deck));
-		}
-		if (s.contains("Undamagable")) {
-			categorymap.put("Spell & Effect damage resistance",service.getUndamagableCardsFromDeck(deck));
-		}
-		if (s.contains("Undestroyable")) {
-			categorymap.put("Spell & Effect destruction resistance",service.getUndestoryableCardsFromDeck(deck));
-		}
-		if (s.contains("Untargetable")) {
-			categorymap.put("Can't be targeted by Spells & Effects",service.getUntargetableCardsFromDeck(deck));
-		}
-		if (s.contains("Unattackable")) {
-			categorymap.put("Can't be attacked",service.getUnattackableCardsFromDeck(deck));
-		}
-		if (s.contains("DamageLimiter")) {
-			categorymap.put("Damage Limiters",service.getDamageLimiterCardsFromDeck(deck));
 		}
 		else {
 			return null;
