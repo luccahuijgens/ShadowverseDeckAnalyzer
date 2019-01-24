@@ -168,6 +168,9 @@ public class CardRestService {
 		if (s.contains("Artifact")){
 			categorymap.put("Artifacts",service.getArtifactCardsFromDeck(deck));
 		}
+		if (s.contains("Bane")) {
+			categorymap.put("Bane",service.getBaneCardsFromDeck(deck));
+		}
 		if (s.contains("Bounce")) {
 			categorymap.put("Bounce",service.getBounceCardsFromDeck(deck));
 		}
@@ -188,6 +191,9 @@ public class CardRestService {
 		}
 		if (s.contains("CardDraw")) {
 			categorymap.put("Card Draw",service.getDrawCardsFromDeck(deck));
+		}
+		if (s.contains("Choose")) {
+			categorymap.put("Choose",service.getChooseCardsFromDeck(deck));
 		}
 		if (s.contains("Commander")) {
 			categorymap.put("Commanders",service.getCommanderCardsFromDeck(deck));

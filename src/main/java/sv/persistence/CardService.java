@@ -229,4 +229,12 @@ public class CardService {
 	public Map<Card, Integer> getRampCardsFromDeck(ArrayList<Card> deck) {
 		return mechanicDAO.getRampCardsFromDeck(deck);
 	}
+	
+	public Map<Card, Integer> getChooseCardsFromDeck(ArrayList<Card> deck) {
+		return keywordDAO.getChooseCardsFromDeck(deck);
+	}
+	
+	public Map<Card, Integer> getBaneCardsFromDeck(ArrayList<Card> deck) {
+		return keywordDAO.getBaneCardsFromDeck(deck);
+	}
 }

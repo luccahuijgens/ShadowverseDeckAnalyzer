@@ -154,6 +154,114 @@ private String stormExceptions="110521020";
 		}
 		return cards;
 	}
+	
+	public Map<Card, Integer> getChooseCardsFromDeck(ArrayList<Card> deck) {
+		Map<Card, Integer> cards = new LinkedHashMap<Card, Integer>();
+		for (Card c : deck) {
+			try (Connection conn = getConnection()) {
+				PreparedStatement stmt = conn.prepareStatement("select* from cards where card_id=? AND (skill_disc ilike '%Choose%' or evo_skill_disc ilike '%Choose%')");
+				stmt.setInt(1, c.getCard_id());
+				ResultSet results = stmt.executeQuery();
+				boolean isAdded = false;
+				if (results.next()) {
+					boolean isPresent = false;
+					for (Map.Entry<Card, Integer> entry : cards.entrySet()) {
+						if (entry.getKey().getCard_id() == c.getCard_id()) {
+							cards.put(entry.getKey(), entry.getValue() + 1);
+							isPresent = true;
+						}
+					}
+					if (isPresent == false) {
+						cards.put(c, 1);
+					}
+					isAdded = true;
+				}
+				boolean hasApplicableTokens = false;
+				if (c.getTokens() != null) {
+					List<String> items = Arrays.asList(c.getTokens().split("\\s*,\\s*"));
+					for (String s : items) {
+						stmt = conn.prepareStatement("select* from cards where card_id=? AND (skill_disc ilike '%Choose%' or evo_skill_disc ilike '%Choose%')");
+						stmt.setInt(1, Integer.parseInt(s));
+						ResultSet tokenresults = stmt.executeQuery();
+						if (tokenresults.next() && hasApplicableTokens == false) {
+							hasApplicableTokens = true;
+						}
+					}
+				}
+				if (hasApplicableTokens == true && isAdded == false) {
+					boolean isPresent = false;
+					for (Map.Entry<Card, Integer> entry : cards.entrySet()) {
+						if (entry.getKey().getCard_id() == c.getCard_id()) {
+							cards.put(entry.getKey(), entry.getValue() + 1);
+							isPresent = true;
+						}
+					}
+					if (isPresent == false) {
+						cards.put(c, 1);
+					}
+				}
+				stmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return cards;
+	}
+	
+	public Map<Card, Integer> getBaneCardsFromDeck(ArrayList<Card> deck) {
+		Map<Card, Integer> cards = new LinkedHashMap<Card, Integer>();
+		for (Card c : deck) {
+			try (Connection conn = getConnection()) {
+				PreparedStatement stmt = conn.prepareStatement("select * from cards where card_id=? and ((skill_disc ilike '%Summon%' and skill_disc ilike '%Bane%') or (skill_disc ilike '%Bane.<br>%' or skill_disc='Bane.' or skill_disc ilike '%Bane. <br>%' or skill_disc ilike '%<br>Bane.%' or skill_disc ilike '%Gain Bane%' or (skill_disc ilike '%Gain%' and skill_disc ilike '%Bane%')) or (evo_skill_disc ilike '%Bane.<br>%' or evo_skill_disc='Bane.' or evo_skill_disc ilike '%Bane. <br>%' or evo_skill_disc ilike '%<br>Bane.%' or evo_skill_disc ilike '%Gain Bane%' or (evo_skill_disc ilike '%Summon%' and evo_skill_disc ilike '%Bane%') or (evo_skill_disc ilike '%Gain%' and evo_skill_disc ilike '%Bane%')))");
+				stmt.setInt(1, c.getCard_id());
+				ResultSet results = stmt.executeQuery();
+				boolean isAdded = false;
+				if (results.next()) {
+					boolean isPresent = false;
+					for (Map.Entry<Card, Integer> entry : cards.entrySet()) {
+						if (entry.getKey().getCard_id() == c.getCard_id()) {
+							cards.put(entry.getKey(), entry.getValue() + 1);
+							isPresent = true;
+						}
+					}
+					if (isPresent == false) {
+						cards.put(c, 1);
+					}
+					isAdded = true;
+				}
+				boolean hasApplicableTokens = false;
+				if (c.getTokens() != null) {
+					List<String> items = Arrays.asList(c.getTokens().split("\\s*,\\s*"));
+					for (String s : items) {
+						stmt = conn.prepareStatement("select * from cards where card_id=? and ((skill_disc ilike '%Summon%' and skill_disc ilike '%Bane%') or (skill_disc ilike '%Bane.<br>%' or skill_disc='Bane.' or skill_disc ilike '%Bane. <br>%' or skill_disc ilike '%<br>Bane.%' or skill_disc ilike '%Gain Bane%' or (skill_disc ilike '%Gain%' and skill_disc ilike '%Bane%')) or (evo_skill_disc ilike '%Bane.<br>%' or evo_skill_disc='Bane.' or evo_skill_disc ilike '%Bane. <br>%' or evo_skill_disc ilike '%<br>Bane.%' or evo_skill_disc ilike '%Gain Bane%' or (evo_skill_disc ilike '%Summon%' and evo_skill_disc ilike '%Bane%') or (evo_skill_disc ilike '%Gain%' and evo_skill_disc ilike '%Bane%')))");
+						stmt.setInt(1, Integer.parseInt(s));
+						ResultSet tokenresults = stmt.executeQuery();
+						if (tokenresults.next() && hasApplicableTokens == false) {
+							hasApplicableTokens = true;
+						}
+					}
+				}
+				if (hasApplicableTokens == true && isAdded == false) {
+					boolean isPresent = false;
+					for (Map.Entry<Card, Integer> entry : cards.entrySet()) {
+						if (entry.getKey().getCard_id() == c.getCard_id()) {
+							cards.put(entry.getKey(), entry.getValue() + 1);
+							isPresent = true;
+						}
+					}
+					if (isPresent == false) {
+						cards.put(c, 1);
+					}
+				}
+				stmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return cards;
+	}
 
 	public Map<Card, Integer> getEvolveCardsFromDeck(ArrayList<Card> deck) {
 		Map<Card, Integer> cards = new LinkedHashMap<Card, Integer>();
