@@ -237,4 +237,8 @@ public class CardService {
 	public Map<Card, Integer> getBaneCardsFromDeck(ArrayList<Card> deck) {
 		return keywordDAO.getBaneCardsFromDeck(deck);
 	}
+	
+	public Map<Card, Integer> getClashCardsFromDeck(ArrayList<Card> deck) {
+		return keywordDAO.getClashCardsFromDeck(deck);
+	}
 }

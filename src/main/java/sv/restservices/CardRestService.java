@@ -195,6 +195,9 @@ public class CardRestService {
 		if (s.contains("Choose")) {
 			categorymap.put("Choose",service.getChooseCardsFromDeck(deck));
 		}
+		if (s.contains("Clash"))  {
+			categorymap.put("Clash", service.getClashCardsFromDeck(deck));
+		}
 		if (s.contains("Commander")) {
 			categorymap.put("Commanders",service.getCommanderCardsFromDeck(deck));
 		}
