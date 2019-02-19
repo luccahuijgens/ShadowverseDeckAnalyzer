@@ -147,6 +147,7 @@ public class CardRestService {
 		htmlString = htmlString.replace("$cardcategories", generateCardCategoryDivs(categorymap));
 		return htmlString;
 		}catch(Exception e) {
+			e.printStackTrace();
 			File htmlTemplateFile = new File(getClass().getClassLoader().getResource(("index.html")).getFile());
 			String htmlString = FileUtils.readFileToString(htmlTemplateFile);
 			return htmlString;
