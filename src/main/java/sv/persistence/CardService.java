@@ -241,4 +241,8 @@ public class CardService {
 	public Map<Card, Integer> getClashCardsFromDeck(ArrayList<Card> deck) {
 		return keywordDAO.getClashCardsFromDeck(deck);
 	}
+	
+	public Map<Card, Integer> getMachinaCardsFromDeck(ArrayList<Card> deck) {
+		return traitDAO.getMachinaCardsFromDeck(deck);
+	}
 }
