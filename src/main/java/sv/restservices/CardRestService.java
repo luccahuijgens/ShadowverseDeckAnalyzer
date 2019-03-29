@@ -239,7 +239,7 @@ public class CardRestService {
 			categorymap.put("Loot", service.getLootCardsFromDeck(deck));
 		}
 		if (s.contains("Machina")) {
-			categorymap.put("Machina", service.getMysteriaCardsFromDeck(deck));
+			categorymap.put("Machina", service.getMachinaCardsFromDeck(deck));
 		}
 		if (s.contains("Mysteria")) {
 			categorymap.put("Mysteria", service.getMysteriaCardsFromDeck(deck));
