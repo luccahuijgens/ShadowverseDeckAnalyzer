@@ -1,4 +1,4 @@
-# SVDeckAnalyzer
+# ShadowverseDeckAnalyzer
 A web application that analyzes decks from Shadowverse. Provide a deck code and this tool will provide a detailed analysis of it's content.
 
 ## Tools
