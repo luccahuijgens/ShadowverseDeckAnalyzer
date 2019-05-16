@@ -1,7 +1,7 @@
 package sv.persistence;
 
 public class CardServiceProvider {
-	private static CardService cardService = cardService.getInstance();
+	private static CardService cardService = CardService.getInstance();
 
 	private CardServiceProvider() {
 	}
