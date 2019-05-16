@@ -56,7 +56,7 @@ public class MechanicDAO extends BaseDAO {
 
 	public Map<Card, Integer> getSummonerCardsFromDeck(List<Card> deck) {
 		return super.getCardsFromStatement(
-				"select* from cards where card_id=? AND ((skill_disc ilike '%Summon%' or skill_disc ilike '%summon%') OR (evo_skill_disc ilike '%Summon%' or evo_skill_disc ilike '%summon%'))",
+				"select* from cards where card_id=? AND ((skill_disc ilike '%Summon%' or skill_disc ilike '%summon%') OR (evo_skill_disc ilike '%Summon%' or evo_skill_disc ilike '%summon%') OR (skill_disc ilike '%Reanimate (%' or evo_skill_disc ilike '%Reanimate (%' ))",
 				deck);
 	}
 
@@ -78,7 +78,7 @@ public class MechanicDAO extends BaseDAO {
 		for (Card c : deck) {
 			try (Connection conn = getConnection()) {
 				PreparedStatement stmt = conn.prepareStatement(
-						"select* from cards where card_id=? AND (((skill_disc ilike '%Summon%' or skill_disc ilike '%summon%') OR (evo_skill_disc ilike '%Summon%' or evo_skill_disc ilike '%summon%')) OR tokens is not null)");
+						"select* from cards where card_id=? AND (((skill_disc ilike '%Summon%' or skill_disc ilike '%summon%') OR (evo_skill_disc ilike '%Summon%' or evo_skill_disc ilike '%summon%')) OR tokens is not null OR (skill_disc ilike '%Reanimate (%' or evo_skill_disc ilike '%Reanimate (%' ))");
 				stmt.setInt(1, c.getCardID());
 				ResultSet results = stmt.executeQuery();
 				boolean doesItSummon = false;
@@ -98,7 +98,7 @@ public class MechanicDAO extends BaseDAO {
 						ResultSet summonresults = stmt.executeQuery();
 						if (!summonresults.next()) {
 							stmt = conn.prepareStatement(
-									"select* from cards where card_id=? and ((skill_disc ilike '%Summon%' or skill_disc ilike '%summon%') OR (evo_skill_disc ilike '%Summon%' or evo_skill_disc ilike '%summon%'))");
+									"select* from cards where card_id=? and ((skill_disc ilike '%Summon%' or skill_disc ilike '%summon%') OR (evo_skill_disc ilike '%Summon%' or evo_skill_disc ilike '%summon%') OR (skill_disc ilike '%Reanimate (%' or evo_skill_disc ilike '%Reanimate (%' ))");
 							stmt.setInt(1, Integer.parseInt(s));
 							ResultSet tokenresults = stmt.executeQuery();
 							if ((tokenresults.next()) && tokenresults.getString("tokens") != null) {
