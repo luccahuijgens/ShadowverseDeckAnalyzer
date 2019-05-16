@@ -1,114 +1,114 @@
 package sv.domain;
 
 public class Card {
-private int card_id;
-private int foil_card_id;
-private int card_set_id;
-private String card_name;
-private int is_foil;
-private int char_type;
+private int cardID;
+private int foilCardID;
+private int cardSetID;
+private String cardName;
+private int isFoil;
+private int charType;
 private int clan;
-private String tribe_name;
-private String skill_disc;
-private String evo_skill_disc;
+private String tribeName;
+private String skillDisc;
+private String evoSkillDisc;
 private int cost;
 private int atk;
 private int life;
-private int evo_atk;
-private int evo_life;
+private int evoAtk;
+private int evoLife;
 private int rarity;
-private int get_red_ether;
-private int use_red_ether;
+private int getRedEther;
+private int useRedEther;
 private String description;
-private String evo_description;
+private String evoDescription;
 private String cv;
-private int base_card_id;
+private int baseCardID;
 private String tokens;
-private int normal_card_id;
-private int format_type;
-private int restricted_count;
+private int normalCardID;
+private int formatType;
+private int restrictedCount;
 
 public Card() {}
 
-public Card(int card_id, int foil_card_id, int card_set_id, String card_name, int is_foil, int char_type, int clan,
-		String tribe_name, String skill_disc, String evo_skill_disc, int cost, int atk, int life, int evo_atk,
-		int evo_life, int rarity, int get_red_ether, int use_red_ether, String description, String evo_description,
-		String cv, int base_card_id, String tokens, int normal_card_id, int format_type, int restricted_count) {
+public Card(int cardID, int foilCardID, int cardSetID, String cardName, int isFoil, int charType, int clan,
+		String tribeName, String skillDisc, String evoSkillDisc, int cost, int atk, int life, int evoAtk, int evoLife,
+		int rarity, int getRedEther, int useRedEther, String description, String evoDescription, String cv,
+		int baseCardID, String tokens, int normalCardID, int formatType, int restrictedCount) {
 	super();
-	this.card_id = card_id;
-	this.foil_card_id = foil_card_id;
-	this.card_set_id = card_set_id;
-	this.card_name = card_name;
-	this.is_foil = is_foil;
-	this.char_type = char_type;
+	this.cardID = cardID;
+	this.foilCardID = foilCardID;
+	this.cardSetID = cardSetID;
+	this.cardName = cardName;
+	this.isFoil = isFoil;
+	this.charType = charType;
 	this.clan = clan;
-	this.tribe_name = tribe_name;
-	this.skill_disc = skill_disc;
-	this.evo_skill_disc = evo_skill_disc;
+	this.tribeName = tribeName;
+	this.skillDisc = skillDisc;
+	this.evoSkillDisc = evoSkillDisc;
 	this.cost = cost;
 	this.atk = atk;
 	this.life = life;
-	this.evo_atk = evo_atk;
-	this.evo_life = evo_life;
+	this.evoAtk = evoAtk;
+	this.evoLife = evoLife;
 	this.rarity = rarity;
-	this.get_red_ether = get_red_ether;
-	this.use_red_ether = use_red_ether;
+	this.getRedEther = getRedEther;
+	this.useRedEther = useRedEther;
 	this.description = description;
-	this.evo_description = evo_description;
+	this.evoDescription = evoDescription;
 	this.cv = cv;
-	this.base_card_id = base_card_id;
+	this.baseCardID = baseCardID;
 	this.tokens = tokens;
-	this.normal_card_id = normal_card_id;
-	this.format_type = format_type;
-	this.restricted_count = restricted_count;
+	this.normalCardID = normalCardID;
+	this.formatType = formatType;
+	this.restrictedCount = restrictedCount;
 }
 
-public int getCard_id() {
-	return card_id;
+public int getCardID() {
+	return cardID;
 }
 
-public void setCard_id(int card_id) {
-	this.card_id = card_id;
+public void setCardID(int cardID) {
+	this.cardID = cardID;
 }
 
-public int getFoil_card_id() {
-	return foil_card_id;
+public int getFoilCardID() {
+	return foilCardID;
 }
 
-public void setFoil_card_id(int foil_card_id) {
-	this.foil_card_id = foil_card_id;
+public void setFoilCardID(int foilCardID) {
+	this.foilCardID = foilCardID;
 }
 
-public int getCard_set_id() {
-	return card_set_id;
+public int getCardSetID() {
+	return cardSetID;
 }
 
-public void setCard_set_id(int card_set_id) {
-	this.card_set_id = card_set_id;
+public void setCardSetID(int cardSetID) {
+	this.cardSetID = cardSetID;
 }
 
-public String getCard_name() {
-	return card_name;
+public String getCardName() {
+	return cardName;
 }
 
-public void setCard_name(String card_name) {
-	this.card_name = card_name;
+public void setCardName(String cardName) {
+	this.cardName = cardName;
 }
 
-public int getIs_foil() {
-	return is_foil;
+public int getIsFoil() {
+	return isFoil;
 }
 
-public void setIs_foil(int is_foil) {
-	this.is_foil = is_foil;
+public void setIsFoil(int isFoil) {
+	this.isFoil = isFoil;
 }
 
-public int getChar_type() {
-	return char_type;
+public int getCharType() {
+	return charType;
 }
 
-public void setChar_type(int char_type) {
-	this.char_type = char_type;
+public void setCharType(int charType) {
+	this.charType = charType;
 }
 
 public int getClan() {
@@ -119,28 +119,28 @@ public void setClan(int clan) {
 	this.clan = clan;
 }
 
-public String getTribe_name() {
-	return tribe_name;
+public String getTribeName() {
+	return tribeName;
 }
 
-public void setTribe_name(String tribe_name) {
-	this.tribe_name = tribe_name;
+public void setTribeName(String tribeName) {
+	this.tribeName = tribeName;
 }
 
-public String getSkill_disc() {
-	return skill_disc;
+public String getSkillDisc() {
+	return skillDisc;
 }
 
-public void setSkill_disc(String skill_disc) {
-	this.skill_disc = skill_disc;
+public void setSkillDisc(String skillDisc) {
+	this.skillDisc = skillDisc;
 }
 
-public String getEvo_skill_disc() {
-	return evo_skill_disc;
+public String getEvoSkillDisc() {
+	return evoSkillDisc;
 }
 
-public void setEvo_skill_disc(String evo_skill_disc) {
-	this.evo_skill_disc = evo_skill_disc;
+public void setEvoSkillDisc(String evoSkillDisc) {
+	this.evoSkillDisc = evoSkillDisc;
 }
 
 public int getCost() {
@@ -167,20 +167,20 @@ public void setLife(int life) {
 	this.life = life;
 }
 
-public int getEvo_atk() {
-	return evo_atk;
+public int getEvoAtk() {
+	return evoAtk;
 }
 
-public void setEvo_atk(int evo_atk) {
-	this.evo_atk = evo_atk;
+public void setEvoAtk(int evoAtk) {
+	this.evoAtk = evoAtk;
 }
 
-public int getEvo_life() {
-	return evo_life;
+public int getEvoLife() {
+	return evoLife;
 }
 
-public void setEvo_life(int evo_life) {
-	this.evo_life = evo_life;
+public void setEvoLife(int evoLife) {
+	this.evoLife = evoLife;
 }
 
 public int getRarity() {
@@ -191,20 +191,20 @@ public void setRarity(int rarity) {
 	this.rarity = rarity;
 }
 
-public int getGet_red_ether() {
-	return get_red_ether;
+public int getGetRedEther() {
+	return getRedEther;
 }
 
-public void setGet_red_ether(int get_red_ether) {
-	this.get_red_ether = get_red_ether;
+public void setGetRedEther(int getRedEther) {
+	this.getRedEther = getRedEther;
 }
 
-public int getUse_red_ether() {
-	return use_red_ether;
+public int getUseRedEther() {
+	return useRedEther;
 }
 
-public void setUse_red_ether(int use_red_ether) {
-	this.use_red_ether = use_red_ether;
+public void setUseRedEther(int useRedEther) {
+	this.useRedEther = useRedEther;
 }
 
 public String getDescription() {
@@ -215,12 +215,12 @@ public void setDescription(String description) {
 	this.description = description;
 }
 
-public String getEvo_description() {
-	return evo_description;
+public String getEvoDescription() {
+	return evoDescription;
 }
 
-public void setEvo_description(String evo_description) {
-	this.evo_description = evo_description;
+public void setEvoDescription(String evoDescription) {
+	this.evoDescription = evoDescription;
 }
 
 public String getCv() {
@@ -231,12 +231,12 @@ public void setCv(String cv) {
 	this.cv = cv;
 }
 
-public int getBase_card_id() {
-	return base_card_id;
+public int getBaseCardID() {
+	return baseCardID;
 }
 
-public void setBase_card_id(int base_card_id) {
-	this.base_card_id = base_card_id;
+public void setBaseCardID(int baseCardID) {
+	this.baseCardID = baseCardID;
 }
 
 public String getTokens() {
@@ -247,28 +247,28 @@ public void setTokens(String tokens) {
 	this.tokens = tokens;
 }
 
-public int getNormal_card_id() {
-	return normal_card_id;
+public int getNormalCardID() {
+	return normalCardID;
 }
 
-public void setNormal_card_id(int normal_card_id) {
-	this.normal_card_id = normal_card_id;
+public void setNormalCardID(int normalCardID) {
+	this.normalCardID = normalCardID;
 }
 
-public int getFormat_type() {
-	return format_type;
+public int getFormatType() {
+	return formatType;
 }
 
-public void setFormat_type(int format_type) {
-	this.format_type = format_type;
+public void setFormatType(int formatType) {
+	this.formatType = formatType;
 }
 
-public int getRestricted_count() {
-	return restricted_count;
+public int getRestrictedCount() {
+	return restrictedCount;
 }
 
-public void setRestricted_count(int restricted_count) {
-	this.restricted_count = restricted_count;
+public void setRestrictedCount(int restrictedCount) {
+	this.restrictedCount = restrictedCount;
 }
 
 
