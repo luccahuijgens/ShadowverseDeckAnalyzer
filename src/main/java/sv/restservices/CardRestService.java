@@ -366,7 +366,7 @@ public class CardRestService {
 				+ "<img class=rarityicon src=https://shadowverse-portal.com/public/assets/image/common/en/rarity_$rarity.png>\r\n"
 				+ "</div>\r\n" + "<div class=cardnamecontainer>\r\n" + "$card_name\r\n" + "</div>\r\n"
 				+ "<div class=amountcontainer>\r\n" + "x$amount</div>"
-				+ "<img class=cardbanner src=https://shadowverse-portal.com/image/card/en/L_$card_id.jpg>\r\n"
+				+ "<img class=cardbanner src=https://shadowverse-portal.com/image/card/phase2/common/L/L_$card_id.jpg>\r\n"
 				+ "</div>";
 		body = body.replace("$cost", String.valueOf(card.getCost()));
 		body = body.replace("$rarity", convertRarity(card.getRarity()));
