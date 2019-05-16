@@ -1,4 +1,4 @@
-# SVDeckAnalyzer
+# ShadowverseDeckAnalyzer
 A web application that analyzes decks from Shadowverse. Provide a deck code and this tool will provide a detailed analysis of it's content.
 
 ## Tools
@@ -9,11 +9,11 @@ deck-editor that uses Shadowverse-Portal to generate a deck code for the DeckAna
 https://svdeckanalyzer.herokuapp.com/, so feel free to try it out.
 
 ## Screenshots
-![alt text](https://raw.githubusercontent.com/luccahuijgens/svdeckanalyzer/master/index.png)
+![alt text](https://raw.githubusercontent.com/luccahuijgens/ShadowverseDeckAnalyzer/master/index.png)
 **Provide a deck code and select all the card categories you want to be highlighted.**
 
-![alt text](https://raw.githubusercontent.com/luccahuijgens/svdeckanalyzer/master/graphs.png)
+![alt text](https://raw.githubusercontent.com/luccahuijgens/ShadowverseDeckAnalyzer/master/graphs.png)
 **Visualize the content of the deck with graphs**
 
-![alt text](https://raw.githubusercontent.com/luccahuijgens/svdeckanalyzer/master/categories.png)
+![alt text](https://raw.githubusercontent.com/luccahuijgens/ShadowverseDeckAnalyzer/master/categories.png)
 **View the cards per card type, keyword, or mechanic**
