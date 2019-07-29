@@ -90,7 +90,7 @@ public class MechanicDAO extends BaseDAO {
 					doesItSummon = true;
 				}
 				boolean hasApplicableTokens = false;
-				if (c.getTokens() != null && doesItSummon == true) {
+				if (c.getTokens() != null && doesItSummon) {
 					List<String> items = Arrays.asList(c.getTokens().split("\\s*,\\s*"));
 					for (String s : items) {
 						stmt = conn.prepareStatement("select* from cards where card_id=? AND char_type=1");
